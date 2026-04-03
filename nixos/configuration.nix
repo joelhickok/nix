@@ -198,7 +198,15 @@
       enable = true;
       # dockerCompat = true;
     };
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+    };
+
   };
+
+
+  programs.virt-manager.enable = true;
 
   documentation.nixos.enable = false;
 
@@ -299,6 +307,7 @@
       "wheel" # Access sudo command
       "scanner"
       "lp"
+      "libvirtd"
     ];
     #shell = pkgs.fish;
   };
@@ -336,8 +345,10 @@
     # alacritty
     # xtextrm
 
-naps2
-simple-scan
+    naps2
+    simple-scan
+
+    dnsmasq # advised through https://wiki.nixos.org/wiki/Virt-manager
 
 
     # file managers
@@ -460,7 +471,6 @@ simple-scan
     # whitebox-tools # https://www.whiteboxgeo.com/whitebox-workflows-for-python
 
     # CLI
-    gpsd
     nmap
     
     # phoronix-test-suite
@@ -540,6 +550,7 @@ simple-scan
     neovim
     
     #gis
+    gpsd
     gpxsee
     viking
     gpx-viewer
